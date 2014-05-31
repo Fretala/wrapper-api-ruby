@@ -1,6 +1,12 @@
 require './fretalaAPI.rb'  
 
-freta = FretalaAPI.new('uvXTwX7Ub/t7aCGxDR3VTVO/GNBxHykhQC03DTjmvIY=', 'sandbox')
+auth = {
+  'clientId' => 'ecommerce',
+  'clientSecret' => 'Q6eH4nxD',
+  'username' => 'YOUR_EMAIL_HERE',
+  'password' => 'YOUR_PASSWORD_HERE'
+};
+freta = FretalaAPI.new('sandbox', auth)
 
 card = {
  'name' => '234',
@@ -12,7 +18,7 @@ card = {
 frete = {
  'id' => 'MM8513110213',
  'productValue' => '6000',
- 'ccToken' => 'car_d27f413bc5ba5acdcaed319838d3b971cd33478f',
+ 'ccToken' => 'car_4004f0709b385d804d0219ed138b1ada17440eb9',
  'from' => {
    'number' => '234',
    'street' => 'Rua Rio de Janeiro',
@@ -34,11 +40,13 @@ route = {
    'city' => 'Belo Horizonte', 
    'state' => 'Minas Gerais'
  },
- 'to' => '30140-122'
+ 'to' => '13564-331'
 }
 
-insertCardRtn  = freta.insertCard(card)
-deleteCardRtn  = freta.deleteCard('car_2cc2750e0e6172cc24be429ee8e4e24af9a89973')
-getCardsRtn    = freta.getCards()
-insertFreteRtn = freta.insertFrete(frete)
-costRtn        = freta.cost(route)
+#remova o comentário da chamada que quiser testar
+
+#insertCardRtn  = freta.insertCard(card)
+#deleteCardRtn  = freta.deleteCard('car_df78411db544f246a1c2b87e011f126ac7745e20')
+#getCardsRtn    = freta.getCards()
+#insertFreteRtn = freta.insertFrete(frete)
+#costRtn        = freta.cost(route)

@@ -2,7 +2,7 @@ require 'json'
 require 'net/http'
 require 'base64'
 
-class FretalaAPI
+class Fretala
   FRETALA_SANDBOX_URL = 'sandbox.freta.la'
   FRETALA_PRODUCTION_URL = 'api.freta.la'
 

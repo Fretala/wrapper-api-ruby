@@ -1,4 +1,4 @@
-require './fretalaAPI.rb'  
+require 'fretala'
 
 auth = {
   'clientId' => 'ecommerce',
@@ -6,7 +6,7 @@ auth = {
   'username' => 'EMAIL_HERE',
   'password' => 'PASSWORD_HERE'
 };
-freta = FretalaAPI.new('sandbox', auth)
+fretala = Fretala.new('sandbox', auth)
 
 card = {
  'name' => '234',
@@ -45,8 +45,9 @@ route = {
 
 #remova o comentário da chamada que quiser testar
 
-#insertCardRtn  = freta.insertCard(card)
-#deleteCardRtn  = freta.deleteCard('car_df78411db544f246a1c2b87e011f126ac7745e20')
-#getCardsRtn    = freta.getCards()
-#insertFreteRtn = freta.insertFrete(frete)
-#costRtn        = freta.cost(route)
+insertCardRtn  = fretala.insertCard(card)
+puts(insertCardRtn)
+#deleteCardRtn  = fretala.deleteCard('car_df78411db544f246a1c2b87e011f126ac7745e20')
+#getCardsRtn    = fretala.getCards()
+#insertFreteRtn = fretala.insertFrete(frete)
+#costRtn        = fretala.cost(route)

@@ -3,8 +3,7 @@ require 'net/http'
 require 'base64'
 
 class FretalaAPI
-  #FRETALA_SANDBOX_URL = 'sandbox.freta.la'
-  FRETALA_SANDBOX_URL = '0.0.0.0'
+  FRETALA_SANDBOX_URL = 'sandbox.freta.la'
   FRETALA_PRODUCTION_URL = 'api.freta.la'
 
   def initialize(environment, settings)
@@ -33,6 +32,7 @@ class FretalaAPI
     @token = res['access_token']
     return @token
   end
+
   def getCards()
     authenticate()
     performRequest('GET', '/cards')
@@ -45,7 +45,7 @@ class FretalaAPI
 
   def deleteCard(cardToken)
     authenticate()
-    performRequest('DELETE', 'cards/'+cardToken)
+    performRequest('DELETE', '/cards/'+cardToken)
   end
 
   def insertFrete(frete)
@@ -70,9 +70,8 @@ class FretalaAPI
   end
 
   def performRequest(type, path, data='', auth=false)
-    #http = Net::HTTP.new(@url, 443)
-    http = Net::HTTP.new(@url, 8080)
-    #http.use_ssl = true
+    http = Net::HTTP.new(@url, 443)
+    http.use_ssl = true
     headers = buildHeaders(auth)
     if type == 'POST'
       request = Net::HTTP::Post.new(path, headers)

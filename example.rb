@@ -3,8 +3,8 @@ require './fretalaAPI.rb'
 auth = {
   'clientId' => 'ecommerce',
   'clientSecret' => 'Q6eH4nxD',
-  'username' => 'YOUR_EMAIL_HERE',
-  'password' => 'YOUR_PASSWORD_HERE'
+  'username' => 'EMAIL_HERE',
+  'password' => 'PASSWORD_HERE'
 };
 freta = FretalaAPI.new('sandbox', auth)
 

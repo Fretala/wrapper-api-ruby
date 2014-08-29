@@ -1,4 +1,4 @@
-require_relative 'lib/fretala'
+require 'fretala'
 
 auth = {
   'clientId' => 'ecommerce',

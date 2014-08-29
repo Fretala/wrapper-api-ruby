@@ -1,10 +1,10 @@
-require 'fretala'
+require_relative 'lib/fretala'
 
 auth = {
   'clientId' => 'ecommerce',
   'clientSecret' => 'Q6eH4nxD',
-  'username' => 'EMAIL_HERE',
-  'password' => 'PASSWORD_HERE'
+  'username' => 'YOUR_EMAIL_HERE',
+  'password' => 'YOUR_PASSWORD_HERE'
 };
 fretala = Fretala.new('sandbox', auth)
 
@@ -18,7 +18,6 @@ card = {
 frete = {
  'id' => 'MM8513110213',
  'productValue' => '6000',
- 'ccToken' => 'car_4004f0709b385d804d0219ed138b1ada17440eb9',
  'from' => {
    'number' => '234',
    'street' => 'Rua Rio de Janeiro',
@@ -40,14 +39,22 @@ route = {
    'city' => 'Belo Horizonte', 
    'state' => 'Minas Gerais'
  },
- 'to' => '13564-331'
+ 'to' => '30140-903'
 }
 
-#remova o comentário da chamada que quiser testar
-
-insertCardRtn  = fretala.insertCard(card)
-puts(insertCardRtn)
-#deleteCardRtn  = fretala.deleteCard('car_df78411db544f246a1c2b87e011f126ac7745e20')
-#getCardsRtn    = fretala.getCards()
+#exemplo de inserção de frete:
 #insertFreteRtn = fretala.insertFrete(frete)
-#costRtn        = fretala.cost(route)
+
+#exemplo de custo com tratamento de erros:
+begin
+  costRtn = fretala.cost(route)
+  puts(costRtn);
+rescue Fretala::ValidationError => e
+  puts('Validation Error: ' + e.message)
+rescue Fretala::BadRequestError => e
+  puts('Bad Request Error: ' + e.message)
+rescue Fretala::InternalError => e
+  puts('Internal Error: ' + e.message)
+rescue => e
+  puts('Error: ' + e.message)
+end

@@ -3,6 +3,16 @@ require 'net/http'
 require 'base64'
 
 class Fretala
+
+  class ValidationError < StandardError
+  end
+
+  class BadRequestError < StandardError
+  end
+
+  class InternalError < StandardError
+  end
+
   FRETALA_SANDBOX_URL = 'sandbox.freta.la'
   FRETALA_PRODUCTION_URL = 'api.freta.la'
 
@@ -90,10 +100,15 @@ class Fretala
     response = http.request(request)
     json = JSON.parse(response.body)
     if response.code != '200' && response.code != '204'
-      if(auth)
-        throw json['error_description']
+      errMsg = json.has_key?('message') ? json['message'] : json['error_description']
+      if response.code == '422'
+        raise ValidationError, errMsg
+      elsif response.code == '400'
+        raise BadRequestError, errMsg
+      elsif response.code == '500'
+        raise InternalError, errMsg
       else
-        throw json['message']
+        raise Error, errMsg
       end
     end
     @token = ''

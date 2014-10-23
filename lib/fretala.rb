@@ -108,7 +108,7 @@ class Fretala
       elsif response.code == '500'
         raise InternalError, errMsg
       else
-        raise Error, errMsg
+        raise StandardError, errMsg
       end
     end
     @token = ''

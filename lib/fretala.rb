@@ -64,6 +64,7 @@ class Fretala
   end
 
   def cost(route)
+    authenticate()
     performRequest('POST', '/fretes/cost', route.to_json)
   end
 

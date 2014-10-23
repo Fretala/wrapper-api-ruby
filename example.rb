@@ -33,12 +33,7 @@ frete = {
 }
 
 route = {
- 'from' => {
-   'number' => '234',
-   'street' => 'Rua Rio de Janeiro 653',
-   'city' => 'Belo Horizonte', 
-   'state' => 'Minas Gerais'
- },
+ 'from' => '30120-908',
  'to' => '30140-903'
 }
 
